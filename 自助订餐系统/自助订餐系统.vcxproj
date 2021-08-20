@@ -139,9 +139,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\FUNCTION\MENU.CPP" />
     <ClCompile Include="admin.cpp" />
     <ClCompile Include="buyer.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="Order.cpp" />
     <ClCompile Include="seller.cpp" />
     <ClCompile Include="自助订餐系统.cpp" />

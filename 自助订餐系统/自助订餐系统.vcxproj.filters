@@ -30,7 +30,7 @@
     <ClCompile Include="seller.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\FUNCTION\MENU.CPP">
+    <ClCompile Include="menu.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
