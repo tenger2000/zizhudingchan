@@ -1,8 +1,7 @@
 #pragma once
 #include<iostream>
 #include<vector>
-#include "person.h"
-#include"menu.h"
+#include"Order.h"
 #include<fstream>
 #include<string>
 #include<iomanip>
@@ -28,7 +27,4 @@ public:
 	void CancelOrder();
 	void addressManagemen();
 	void chooseAddress();
-	int m_SID;
-private:
-
 };

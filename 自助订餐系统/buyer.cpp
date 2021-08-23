@@ -34,12 +34,10 @@ void buyer::operMenu()
 }
 void buyer::subOrder()
 {
-	Menu* menu=new Menu;
-	menu->operMenu();
 
-
-
-
+	string name =this->m_Uname;
+	Order::Order(name);
+	system("cls");
 }
 void buyer::viewOrder()
 {

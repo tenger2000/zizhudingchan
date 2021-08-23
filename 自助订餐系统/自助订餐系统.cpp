@@ -68,7 +68,6 @@ int main() {
 			break;
 		}
 	}
-	system("pause");
 	system("cls");
 	return 0;
 }
@@ -109,7 +108,6 @@ void login(string fileName, int type) {
 					cout << "登录成功!" << endl;
 					p = new buyer(temp_id, temp_Name, temp_pswd);
 					buyermenu(p);
-					system("pause");
 					system("cls");
 					ifs.close();
 					return;
@@ -126,7 +124,6 @@ void login(string fileName, int type) {
 					cout << "登录成功!" << endl;
 					p = new seller(temp_id, temp_Name, temp_pswd);
 					sellermenu(p);
-					system("pause");
 					system("cls");
 					ifs.close();
 					return;
@@ -141,7 +138,6 @@ void login(string fileName, int type) {
 				cout << "登录成功!" << endl;
 				p = new admin(temp_Name, temp_pswd);
 				adminmenu(p);
-				system("pause");
 				system("cls");
 				ifs.close();
 				return;
@@ -157,6 +153,7 @@ void login(string fileName, int type) {
 	return;
 }
 void buyermenu(Person* p) {
+	system("cls");
 	p->operMenu();
 	buyer* B = (buyer*)p;
 	int choose;
@@ -173,14 +170,15 @@ void buyermenu(Person* p) {
 		B->CancelOrder();
 		break;
 	case 4:
-		B->subOrder();
+		
 		break;
 	case 0:
-		B->subOrder();
+		
 		break;
 	default:
 		break;
 	}
+	system("cls");
 }
 void sellermenu(Person* p) {
 	p->operMenu();
@@ -188,6 +186,7 @@ void sellermenu(Person* p) {
 void adminmenu(Person* p) {
 	while (true)
 	{
+		system("cls");
 		p->operMenu();
 		admin* A = (admin*)p;
 		int choose;

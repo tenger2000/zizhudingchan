@@ -9,7 +9,8 @@ using namespace std;
 class Person {
 public:
 	//operator menu
-	virtual void operMenu() = 0;
+	virtual void operMenu() { return; }
 	string m_Uname;
 	string m_Pwd;
+	int m_SID;
 };

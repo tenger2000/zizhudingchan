@@ -6,9 +6,11 @@ Menu::Menu()
 
 Menu::Menu(string dishName, string dishID, double price)
 {
+	this->dishName = dishName;
+	this->price = price;
 }
 
-void Menu::operMenu()
+void Menu::VMenu()
 {
 	char buf[1024] = { '\0' };
 	ifstream ifs;
@@ -27,7 +29,7 @@ void Menu::operMenu()
 	}
 	string ID, name, price;
 	cout << "±àºÅ" << setfill(' ') << setw(8) << "²ËÃû" << setw(8) << "¼Û¸ñ" << endl;
-	while (!ifs.eof())
+	while (ifs.peek()!=EOF)
 	{
 		ifs >> ID && ifs >> name && ifs >> price;
 		cout << left;
@@ -35,10 +37,3 @@ void Menu::operMenu()
 	}
 }
 
-Date::Date()
-{
-}
-
-Date::Date(int y, int m, int d, int h)
-{
-}

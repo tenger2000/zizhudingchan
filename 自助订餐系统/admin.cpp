@@ -2,6 +2,7 @@
 
 admin::admin()
 {
+	initialVector();
 }
 
 admin::admin(string Uname, string pwd)
@@ -34,9 +35,9 @@ void printseller(seller& seller) {
 }
 
 void printorder(Order& order) {
-	
+
 }
-void admin::addPerson(Person*p)
+void admin::addPerson(Person* p)
 {
 	while (true) {
 		cout << setfill('-') << setw(62) << "-" << endl;
@@ -60,7 +61,7 @@ void admin::addPerson(Person*p)
 		switch (choose)
 		{
 		case 1:
-			if(p==NULL)
+			if (p == NULL)
 				filename = "buyer.txt";
 			else
 				filename = "employee.txt";
@@ -72,7 +73,7 @@ void admin::addPerson(Person*p)
 			cout << "您输入的编号错误，请重新输入" << endl;
 			break;
 		}
-		lab_A:
+	lab_A:
 		ofstream ofs;
 		ofs.open(filename, ios::out | ios::app);
 		string name, pswd;
@@ -80,14 +81,13 @@ void admin::addPerson(Person*p)
 		cin >> name;
 		cout << "请输入您的密码：";
 		cin >> pswd;
-			srand((unsigned)time(0));
-			id = rand() % 9000 + 1001;
-			initialVector();
+		srand((unsigned)time(0));
+		id = rand() % 9000 + 1001;
 
-			if ((this->checkRepeat(id, choose, name)))
-			{
-				goto lab_A;
-			} 
+		if ((this->checkRepeat(id, choose, name)))
+		{
+			goto lab_A;
+		}
 		ofs << id << " " << name << " " << pswd << endl;
 		if (!ofs.fail())
 		{
@@ -132,7 +132,7 @@ void admin::viewAllPerson()
 			for_each(this->m_Vbuyer.begin(), this->m_Vbuyer.end(), printbuyer);
 			break;
 		case 2:
-			cout << "所有管理员列表：" << endl;
+			cout << "所有员工列表：" << endl;
 			for_each(this->m_Vseller.begin(), this->m_Vseller.end(), printseller);
 			break;
 		case 3:
@@ -156,6 +156,9 @@ void admin::initialVector()
 {
 	this->m_Vbuyer.clear();
 	this->m_Vseller.clear();
+	this->m_Vmenu.clear();
+	this->m_Vorder.clear();
+	this->m_Vaddress.clear();
 	ifstream ifs;
 	ifs.open("buyer.txt", ios::in);
 	if (!ifs.is_open())
@@ -168,7 +171,7 @@ void admin::initialVector()
 	else
 	{
 		buyer B;
-		while (ifs>>B.m_SID && ifs>>B.m_Uname && ifs>>B.m_Pwd)
+		while (ifs >> B.m_SID && ifs >> B.m_Uname && ifs >> B.m_Pwd)
 		{
 			m_Vbuyer.push_back(B);
 		}
@@ -191,18 +194,69 @@ void admin::initialVector()
 		}
 	}
 	ifs.close();
+	ifs.open("menu.txt", ios::in);
+	if (!ifs.is_open())
+	{
+		cout << "文件打开失败" << endl;
+		ifs.close();
+		ofstream fout("menu.txt");
+		return;
+	}
+	else
+	{
+		Menu m;
+		while (ifs >> m.dishID && ifs >> m.dishName && ifs >> m.price)
+		{
+			m_Vmenu.push_back(m);
+		}
+	}
+	ifs.close();
+	ifs.open("order.txt", ios::in);
+	if (!ifs.is_open())
+	{
+		cout << "文件打开失败" << endl;
+		ifs.close();
+		ofstream fout("order.txt");
+		return;
+	}
+	else
+	{
+		Order o;
+		while (ifs >> o.dishID && ifs >> o.dishName && ifs >> o.price && ifs >> o.m_Uname && ifs >> o.Address && ifs >> o.mPhoneNo)
+		{
+			m_Vorder.push_back(o);
+		}
+	}
+	ifs.close();
+	ifs.open("address.txt", ios::in);
+	if (!ifs.is_open())
+	{
+		cout << "文件打开失败" << endl;
+		ifs.close();
+		ofstream fout("address.txt");
+		return;
+	}
+	else
+	{
+		address a;
+		while (ifs >> a.m_Uname && ifs >> a.Address && ifs >> a.mPhoneNo)
+		{
+			m_Vaddress.push_back(a);
+		}
+	}
+	ifs.close();
 }
 
-bool admin::checkRepeat(int id, int type,string name)
+bool admin::checkRepeat(int id, int type, string name)
 {
 	switch (type)
 	{
 	case 1:
 		for (vector<buyer>::iterator it = m_Vbuyer.begin(); it != m_Vbuyer.end(); it++)
 		{
-			if (id == it->m_SID || name==it->m_Uname)
+			if (id == it->m_SID || name == it->m_Uname)
 			{
-				cout << "ID或姓名重复，请重新输入" <<endl;
+				cout << "ID或姓名重复，请重新输入" << endl;
 				return true;
 			}
 		}

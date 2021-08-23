@@ -8,6 +8,7 @@
 #include"seller.h"
 #include"Order.h"
 #include"menu.h"
+#include"address.h"
 #include<algorithm>
 #include<iomanip>
 
@@ -46,6 +47,6 @@ public:
 	vector<seller> m_Vseller;
 	vector<Order> m_Vorder;
 	vector<Menu> m_Vmenu;
-
+	vector<address> m_Vaddress;
 };
 

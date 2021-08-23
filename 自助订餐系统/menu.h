@@ -8,24 +8,14 @@
 #include<vector>
 
 using namespace std;
-
-//定义日期类，存年月日及小时 
-class Date
-{
-public:
-	int year, month, day, hour;
-	Date();
-	Date(int y, int m, int d, int h);
-};
-
-class Menu:public Person
+class Menu
 {
 public:
 	string dishName, dishID;
 	double price;
 	Menu();
 	Menu(string dishName, string dishID, double price);
-	virtual void operMenu();
+	void VMenu();
 
 };
 
