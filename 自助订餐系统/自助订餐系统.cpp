@@ -184,36 +184,17 @@ void sellermenu(Person* p) {
 	p->operMenu();
 }
 void adminmenu(Person* p) {
+	system("cls");
 	while (true)
 	{
-		system("cls");
 		p->operMenu();
 		admin* A = (admin*)p;
 		int choose;
-		cin >> choose;
-		switch (choose)
-		{
-		case 1:
-
-			break;
-		case 2:
-
-			break;
-		case 3:
-
-			break;
-		case 4:
-
-			break;
-		case 5:
-			A->addPerson(p);
-			break;
-		case 0:
-			return;
-			break;
-		default:
-			cout << "输入错误，请重新输入:";
-			break;
+		cin.clear();
+		while (cin.get() != '\n') {
+			continue;
 		}
+		cin >> choose;
+		A->viewAllPerson(choose);
 	}
 }

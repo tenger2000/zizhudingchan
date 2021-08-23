@@ -35,7 +35,11 @@ void printseller(seller& seller) {
 }
 
 void printorder(Order& order) {
-
+	cout << "菜品ID：" << order.dishID << "\t菜品名：" << order.dishName << "\t单价:" << order.price << "\t份数:" << order.quantity << endl;
+	cout << "总价:" << order.totalprice << "\t客户名：" << order.m_Uname << "\t地址:" << order.Address << "\t电话:" << order.mPhoneNo << endl;
+}
+void printmenu(Menu& menu) {
+	cout << "菜品ID：" << menu.dishID << "\t菜品名:" << menu.dishName << "\t单价:" << menu.price << endl;
 }
 void admin::addPerson(Person* p)
 {
@@ -103,28 +107,8 @@ void admin::addPerson(Person* p)
 	return;
 }
 
-void admin::viewAllPerson()
+void admin::viewAllPerson(int choose)
 {
-	while (true)
-	{
-		cout << setfill('-') << setw(62) << "-" << endl;
-		cout << "|" << setfill('*') << setw(35) << "1、买家账号" << setfill('*') << setw(26) << "|" << endl;
-		cout << "|" << setfill('*') << setw(37) << "2、管理员账号" << setfill('*') << setw(26) << "|" << endl;
-		cout << "|" << setfill('*') << setw(35) << "3、退出查看" << setfill('*') << setw(26) << "|" << endl;
-		cout << "|" << setfill('*') << setw(61) << "|" << endl;
-		cout << setfill('-') << setw(62) << "-" << endl;
-		cout << "请选择您的编号:";
-		int choose;
-		cin >> choose;
-		while (cin.fail())
-		{
-			cin.clear();
-			while (cin.get() != '\n') {
-				continue;
-			}
-			cout << "输入错误，请重新输入编号：";
-			cin >> choose;
-		}
 		switch (choose)
 		{
 		case 1:
@@ -136,12 +120,12 @@ void admin::viewAllPerson()
 			for_each(this->m_Vseller.begin(), this->m_Vseller.end(), printseller);
 			break;
 		case 3:
-			return;
+			cout << "所有菜品列表：" << endl;
+			for_each(this->m_Vmenu.begin(), this->m_Vmenu.end(), printmenu);
 			break;
 		default:
 			break;
 		}
-	}
 }
 
 void admin::viewComRomInfo()
@@ -158,7 +142,6 @@ void admin::initialVector()
 	this->m_Vseller.clear();
 	this->m_Vmenu.clear();
 	this->m_Vorder.clear();
-	this->m_Vaddress.clear();
 	ifstream ifs;
 	ifs.open("buyer.txt", ios::in);
 	if (!ifs.is_open())
@@ -222,26 +205,9 @@ void admin::initialVector()
 	else
 	{
 		Order o;
-		while (ifs >> o.dishID && ifs >> o.dishName && ifs >> o.price && ifs >> o.m_Uname && ifs >> o.Address && ifs >> o.mPhoneNo)
+		while (ifs >> o.dishID && ifs >> o.dishName && ifs >> o.price && ifs >> o.quantity)
 		{
 			m_Vorder.push_back(o);
-		}
-	}
-	ifs.close();
-	ifs.open("address.txt", ios::in);
-	if (!ifs.is_open())
-	{
-		cout << "文件打开失败" << endl;
-		ifs.close();
-		ofstream fout("address.txt");
-		return;
-	}
-	else
-	{
-		address a;
-		while (ifs >> a.m_Uname && ifs >> a.Address && ifs >> a.mPhoneNo)
-		{
-			m_Vaddress.push_back(a);
 		}
 	}
 	ifs.close();

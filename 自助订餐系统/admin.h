@@ -33,7 +33,7 @@ public:
 	//add Person
 	void addPerson(Person*p);
 	//view all Person
-	void viewAllPerson();
+	void viewAllPerson(int choose);
 	//view computer room info
 	void viewComRomInfo();
 	// clean reservation record

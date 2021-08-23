@@ -4,14 +4,15 @@ Order::Order()
 {
 }
 
-Order::Order(string dishID, string dishname, double dishprice, string name, string address, string mphone)
+Order::Order(string dishname, int quantity, double price, string name, string address, string mphone)
 {
-	this->dishID = dishID;
 	this->dishName = dishname;
-	this->price = dishprice;
+	this->quantity = quantity;
+	this->price = price;
 	this->m_Uname = name;
 	this->Address = address;
 	this->mPhoneNo = mphone;
+	this->totalprice = quantity * price;
 }
 
 

@@ -16,8 +16,10 @@ using namespace std;
 class Order :public Menu,public address
 {
 public:
+	double totalprice;
+	int quantity;
 	Order();
-	Order(string dishID,string dishname,double dishprice,string name,string address,string mphone);
+	Order(string dishname, int quantity,double price,string name,string address,string mphone);
 	Order(string name);
 	char* OrderDate();
 
