@@ -148,6 +148,8 @@
     <ClCompile Include="自助订餐系统.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="address.txt" />
+    <Text Include="admin.txt" />
     <Text Include="buyer.txt" />
     <Text Include="menu.txt" />
     <Text Include="order.txt" />

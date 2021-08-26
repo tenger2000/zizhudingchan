@@ -22,7 +22,7 @@ using namespace std;
 
 
 
-class admin:public Person
+class admin :public buyer
 {
 public:
 	//default struct
@@ -33,7 +33,7 @@ public:
 	//add Person
 	void addPerson(Person*p);
 	//view all Person
-	void viewAllPerson(int choose);
+	void viewAllMenu(int choose);
 	//view computer room info
 	void viewComRomInfo();
 	// clean reservation record

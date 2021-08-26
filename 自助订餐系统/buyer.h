@@ -13,7 +13,7 @@ using namespace std;
 
 
 
-class buyer:public Person
+class buyer:public Order
 {
 public:
 	buyer();

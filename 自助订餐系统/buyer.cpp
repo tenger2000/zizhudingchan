@@ -34,9 +34,8 @@ void buyer::operMenu()
 }
 void buyer::subOrder()
 {
-
 	string name =this->m_Uname;
-	Order::Order(name);
+	addOrder(name);
 	system("cls");
 }
 void buyer::viewOrder()

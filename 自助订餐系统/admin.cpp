@@ -34,13 +34,7 @@ void printseller(seller& seller) {
 	cout << "用户ID：" << seller.m_SID << "\t用户名:" << seller.m_Uname << "\t密码:" << seller.m_Pwd << endl;
 }
 
-void printorder(Order& order) {
-	cout << "菜品ID：" << order.dishID << "\t菜品名：" << order.dishName << "\t单价:" << order.price << "\t份数:" << order.quantity << endl;
-	cout << "总价:" << order.totalprice << "\t客户名：" << order.m_Uname << "\t地址:" << order.Address << "\t电话:" << order.mPhoneNo << endl;
-}
-void printmenu(Menu& menu) {
-	cout << "菜品ID：" << menu.dishID << "\t菜品名:" << menu.dishName << "\t单价:" << menu.price << endl;
-}
+
 void admin::addPerson(Person* p)
 {
 	while (true) {
@@ -77,21 +71,17 @@ void admin::addPerson(Person* p)
 			cout << "您输入的编号错误，请重新输入" << endl;
 			break;
 		}
-	lab_A:
 		ofstream ofs;
 		ofs.open(filename, ios::out | ios::app);
 		string name, pswd;
-		cout << "请输入您的姓名：";
-		cin >> name;
-		cout << "请输入您的密码：";
-		cin >> pswd;
-		srand((unsigned)time(0));
-		id = rand() % 9000 + 1001;
-
-		if ((this->checkRepeat(id, choose, name)))
-		{
-			goto lab_A;
-		}
+		do {
+			cout << "请输入您的姓名：";
+			cin >> name;
+			cout << "请输入您的密码：";
+			cin >> pswd;
+			srand((unsigned)time(0));
+			id = rand() % 9000 + 1001;
+		}while ((this->checkRepeat(id, choose, name)));
 		ofs << id << " " << name << " " << pswd << endl;
 		if (!ofs.fail())
 		{
@@ -107,7 +97,7 @@ void admin::addPerson(Person* p)
 	return;
 }
 
-void admin::viewAllPerson(int choose)
+void admin::viewAllMenu(int choose)
 {
 		switch (choose)
 		{
@@ -120,8 +110,10 @@ void admin::viewAllPerson(int choose)
 			for_each(this->m_Vseller.begin(), this->m_Vseller.end(), printseller);
 			break;
 		case 3:
-			cout << "所有菜品列表：" << endl;
-			for_each(this->m_Vmenu.begin(), this->m_Vmenu.end(), printmenu);
+			viewMenu();
+			break;
+		case 4:
+			viewMenu();
 			break;
 		default:
 			break;
@@ -176,23 +168,7 @@ void admin::initialVector()
 			m_Vseller.push_back(S);
 		}
 	}
-	ifs.close();
-	ifs.open("menu.txt", ios::in);
-	if (!ifs.is_open())
-	{
-		cout << "文件打开失败" << endl;
-		ifs.close();
-		ofstream fout("menu.txt");
-		return;
-	}
-	else
-	{
-		Menu m;
-		while (ifs >> m.dishID && ifs >> m.dishName && ifs >> m.price)
-		{
-			m_Vmenu.push_back(m);
-		}
-	}
+
 	ifs.close();
 	ifs.open("order.txt", ios::in);
 	if (!ifs.is_open())
@@ -207,6 +183,7 @@ void admin::initialVector()
 		Order o;
 		while (ifs >> o.dishID && ifs >> o.dishName && ifs >> o.price && ifs >> o.quantity)
 		{
+			//if(o.dishID.find())
 			m_Vorder.push_back(o);
 		}
 	}

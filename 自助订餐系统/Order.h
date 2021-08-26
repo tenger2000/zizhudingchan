@@ -20,8 +20,8 @@ public:
 	int quantity;
 	Order();
 	Order(string dishname, int quantity,double price,string name,string address,string mphone);
-	Order(string name);
-	char* OrderDate();
-
+	void addOrder(string name);
+	string OrderDate();
+	
 };
 

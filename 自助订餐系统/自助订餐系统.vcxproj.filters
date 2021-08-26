@@ -47,6 +47,12 @@
     <Text Include="buyer.txt">
       <Filter>资源文件</Filter>
     </Text>
+    <Text Include="address.txt">
+      <Filter>资源文件</Filter>
+    </Text>
+    <Text Include="admin.txt">
+      <Filter>资源文件</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="person.h">

@@ -6,6 +6,7 @@
 #include<iomanip>
 #include"person.h"
 #include<vector>
+#include <algorithm>
 
 using namespace std;
 class Menu
@@ -15,8 +16,11 @@ public:
 	double price;
 	Menu();
 	Menu(string dishName, string dishID, double price);
-	void VMenu();
-
+	void viewMenu();
+	void addMenu();
+	void initMenu();
+	bool checkRepeat(string id, string dishname);
+	vector<Menu> Vmenu;
 };
 
 

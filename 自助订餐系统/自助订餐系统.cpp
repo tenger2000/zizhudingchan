@@ -14,7 +14,7 @@ using namespace std;
 
 void login(string fileName, int type);
 void buyermenu(Person* p);
-void sellermenu(Person* p);
+void employeemenu(Person* p);
 void adminmenu(Person* p);
 
 
@@ -123,7 +123,7 @@ void login(string fileName, int type) {
 				if (uName == temp_Name && pswd == temp_pswd) {
 					cout << "登录成功!" << endl;
 					p = new seller(temp_id, temp_Name, temp_pswd);
-					sellermenu(p);
+					employeemenu(p);
 					system("cls");
 					ifs.close();
 					return;
@@ -180,7 +180,7 @@ void buyermenu(Person* p) {
 	}
 	system("cls");
 }
-void sellermenu(Person* p) {
+void employeemenu(Person* p) {
 	p->operMenu();
 }
 void adminmenu(Person* p) {
@@ -195,6 +195,6 @@ void adminmenu(Person* p) {
 			continue;
 		}
 		cin >> choose;
-		A->viewAllPerson(choose);
+		A->viewAllMenu(choose);
 	}
 }
