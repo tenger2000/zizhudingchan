@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DEFECTS>
+  <DEFECT>
+    <SFA>
+      <FILEPATH>E:\Code\自助订餐系统\自助订餐系统\</FILEPATH>
+      <FILENAME>menu.cpp</FILENAME>
+      <LINE>4</LINE>
+      <COLUMN>6</COLUMN>
+    </SFA>
+    <DEFECTCODE>26495</DEFECTCODE>
+    <DESCRIPTION>未初始化变量 Menu::price。始终初始化成员变量(type.6)。</DESCRIPTION>
+    <FUNCTION>Menu::{ctor}</FUNCTION>
+    <DECORATED>??0Menu@@QEAA@XZ</DECORATED>
+    <FUNCLINE>4</FUNCLINE>
+    <ADDITIONALINFO>
+      <targetSymbol>Menu::price</targetSymbol>
+    </ADDITIONALINFO>
+    <PATH></PATH>
+  </DEFECT>
+</DEFECTS>
