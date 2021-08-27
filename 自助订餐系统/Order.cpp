@@ -81,7 +81,7 @@ void Order::addOrder(string name)
 	orderNO = OrderDate();
 	cout << orderNO << endl;
 	ordername = createdoc(name);
-	ofstream ofs;
+	fstream ofs;
 	ofs.open(ordername, ios::app);
 	if (!ofs.is_open())
 	{
@@ -91,7 +91,7 @@ void Order::addOrder(string name)
 	}
 	viewMenu();
 	string tempdishID, tempdishname;
-	double tempdishprice,totalprice=0, tempquantity;
+	double tempdishprice, totalprice = 0, tempquantity;
 	ofs << "菜品ID" << "\t" << "菜品名称" << "\t" << "菜品单价" << "\t" << "菜品份数" << endl;
 	while (true)
 	{
@@ -138,12 +138,25 @@ void Order::addOrder(string name)
 			this->Addaddress();
 		}
 	} while (tempaddress == "");
-	cout << "请选择您的地址编号:" ;
+	cout << "请选择您的地址编号:";
 	cin >> choose;
 	ofs << "总价" << "\t" << "顾客名称" << "\t" << "地址" << "\t" << "电话" << endl;
-	ofs  << totalprice << "\t" << name << "\t" << m_Vaddress[choose - 1].Address << "\t" << m_Vaddress[choose - 1].mPhoneNo << endl;
+	ofs << totalprice << "\t" << name << "\t" << m_Vaddress[choose - 1].Address << "\t" << m_Vaddress[choose - 1].mPhoneNo << endl;
+	ofs << OrderDate() << endl;
+	cout << "您的订单如下：" << endl;
+	ofs.beg;
+	string templine, confirm;
+	while (getline(ofs, templine))
+	{
+		cout << templine << endl;
+	}
 	ofs.close();
-	cout << OrderDate();
+	cout << "请输入 Y/N：";
+	cin >> confirm;
+	if (confirm != "Y" && confirm != "y")
+	{
+		remove(ordername.c_str());
+	}
 }
 
 string Order::OrderDate()

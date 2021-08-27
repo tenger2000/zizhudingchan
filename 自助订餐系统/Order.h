@@ -11,7 +11,7 @@
 #include<shlwapi.h>
 #include<io.h>
 #include<sstream>
-# include <stdlib.h>
+#include <stdlib.h>
 
 #pragma comment(lib, "shlwapi.lib")
 using namespace std;
