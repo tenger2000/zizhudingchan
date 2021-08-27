@@ -170,7 +170,7 @@ void buyermenu(Person* p) {
 		B->CancelOrder();
 		break;
 	case 4:
-		
+		B->addressManagemen();
 		break;
 	case 0:
 		

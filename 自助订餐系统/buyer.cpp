@@ -49,6 +49,7 @@ void buyer::CancelOrder()
 
 void buyer::addressManagemen()
 {
+	this->Addaddress();
 }
 
 void buyer::chooseAddress()
