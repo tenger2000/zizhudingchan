@@ -24,7 +24,7 @@ public:
 	int quantity;
 	Order();
 	Order(string dishname, int quantity,double price,string name,string address,string mphone);
-	void addOrder(string name);
+	void addOrder();
 	void createdir();
 	string createdoc(string name);
 	string OrderDate();

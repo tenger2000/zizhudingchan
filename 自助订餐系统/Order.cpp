@@ -74,9 +74,9 @@ void getJustCurrentFile(string path, vector<string>& files)
 	}
 }
 
-void Order::addOrder(string name)
+void Order::addOrder()
 {
-	this->m_Uname = name;
+	string name = this->m_Uname;
 	string ordername, orderNO;
 	orderNO = OrderDate();
 	cout << orderNO << endl;
