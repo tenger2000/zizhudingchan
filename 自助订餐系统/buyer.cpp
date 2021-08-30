@@ -34,13 +34,13 @@ void buyer::operMenu()
 }
 void buyer::subOrder()
 {
-	string name =this->m_Uname;
 	this->addOrder();
 	system("cls");
 }
 void buyer::viewOrder()
 {
-
+	this->ViewTodayOrder();
+	system("cls");
 }
 void buyer::CancelOrder()
 {

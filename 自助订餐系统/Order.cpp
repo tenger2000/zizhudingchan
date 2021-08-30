@@ -15,7 +15,36 @@ Order::Order(string dishname, int quantity, double price, string name, string ad
 	this->mPhoneNo = mphone;
 	this->totalprice = quantity * price;
 }
+string OrderDate()
+{
+	struct tm newtime;
+	char* tmpbuf = new char[128];
+	string buf;
+	time_t lt1;
 
+	time(&lt1);
+	localtime_s(&newtime, &lt1);
+
+	strftime(tmpbuf, 128, "%F %T", &newtime);
+	buf = string(tmpbuf);
+	return buf;
+}
+string TodayFilePath() {
+	string filepath;
+	filepath ="./" +OrderDate().substr(0, 10);
+	return filepath;
+}
+void PrintOrder(string filename) {
+	ifstream ifs;
+	ifs.open(filename, ios::beg);
+	string templine;
+	while (!ifs.eof())
+	{
+		getline(ifs, templine);
+		cout << templine << endl;
+	}
+	ifs.close();
+}
 void Order::createdir() {
 	string dir;
 	dir = OrderDate().substr(0, 10);
@@ -140,15 +169,8 @@ void Order::addOrder()
 	ofs.close();
 	system("cls");
 	cout << "您的订单如下：" << endl;
-	ifstream ifs;
-	ifs.open(ordername, ios::beg);
-	string templine, confirm;
-	while (!ifs.eof())
-	{
-		getline(ifs, templine);
-		cout << templine << endl;
-	}
-	ifs.close();
+	PrintOrder(ordername);
+	string confirm;
 	cout << "请输入 Y/N：";
 	cin >> confirm;
 	if (confirm != "Y" && confirm != "y")
@@ -157,29 +179,12 @@ void Order::addOrder()
 	}
 }
 
-string Order::OrderDate()
-{
-	struct tm newtime;
-	char* tmpbuf = new char[128];
-	string buf;
-	time_t lt1;
-
-	time(&lt1);
-	localtime_s(&newtime, &lt1);
-
-	strftime(tmpbuf, 128, "%F %T", &newtime);
-	buf = string(tmpbuf);
-	return buf;
-}
 
 string Order::createdoc(string name)
 {
-	string filedoc, file, filePath, TodayOrderNO;
+	string filedoc, file, TodayOrderNO;
 	vector<string> files;
-	file = OrderDate().substr(0, 10);
-	////获取该路径下的所有文件
-	filePath = "./" + file;
-	getJustCurrentFile(filePath, files);
+	getJustCurrentFile(TodayFilePath(), files);
 	char str[16];
 	_itoa_s(files.size() + 1, str, 16, 10);
 	TodayOrderNO = str;
@@ -193,5 +198,22 @@ string Order::createdoc(string name)
 	}
 	ofs.close();
 	return filedoc;
+}
+
+
+void Order::ViewTodayOrder()
+{
+	vector<string> files;
+	string filename;
+	files.clear();
+	getFiles(TodayFilePath(), files);
+	for (int i = 0; i < files.size(); i++)
+	{
+		if (files[i].find(this->m_Uname)!=-1)
+		{
+			PrintOrder(files[i]);
+		}
+	}
+	system("pause");
 }
 
