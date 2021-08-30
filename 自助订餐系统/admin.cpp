@@ -97,27 +97,16 @@ void admin::addPerson(Person* p)
 	return;
 }
 
-void admin::viewAllMenu(int choose)
+void admin::Viewbuyer()
 {
-		switch (choose)
-		{
-		case 1:
-			cout << "所有买家列表：" << endl;
-			for_each(this->m_Vbuyer.begin(), this->m_Vbuyer.end(), printbuyer);
-			break;
-		case 2:
-			cout << "所有员工列表：" << endl;
-			for_each(this->m_Vseller.begin(), this->m_Vseller.end(), printseller);
-			break;
-		case 3:
-			viewMenu();
-			break;
-		case 4:
-			viewMenu();
-			break;
-		default:
-			break;
-		}
+	cout << "所有买家列表：" << endl;
+	for_each(this->m_Vbuyer.begin(), this->m_Vbuyer.end(), printbuyer);
+}
+
+void admin::Viewseller()
+{
+	cout << "所有员工列表：" << endl;
+	for_each(this->m_Vseller.begin(), this->m_Vseller.end(), printseller);
 }
 
 void admin::viewComRomInfo()

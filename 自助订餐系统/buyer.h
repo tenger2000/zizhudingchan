@@ -26,5 +26,5 @@ public:
 	//cancel Order
 	void CancelOrder();
 	void addressManagemen();
-	void chooseAddress();
+	void ChangPswd();
 };

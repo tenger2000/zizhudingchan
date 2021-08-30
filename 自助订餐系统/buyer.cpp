@@ -44,7 +44,10 @@ void buyer::viewOrder()
 }
 void buyer::CancelOrder()
 {
-
+	string orderid;
+	this->ViewTodayOrder("buyer");
+	cout << "请输入需要取消的订单编号:";
+	cin >> orderid;
 }
 
 void buyer::addressManagemen()
@@ -52,7 +55,8 @@ void buyer::addressManagemen()
 	this->Addaddress();
 }
 
-void buyer::chooseAddress()
+void buyer::ChangPswd()
 {
 }
+
 

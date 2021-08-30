@@ -174,6 +174,9 @@ void buyermenu(Person* p) {
 	case 4:
 		B->addressManagemen();
 		break;
+	case 5:
+		B->ChangPswd();
+		break;
 	case 0:
 		return;
 		break;
@@ -197,7 +200,30 @@ void adminmenu(Person* p) {
 		while (cin.get() != '\n') {
 			continue;
 		}
+		cout << "请输入您选择的编号:";
 		cin >> choose;
-		A->viewAllMenu(choose);
+		switch (choose)
+		{
+		case 1:
+			A->Viewbuyer();
+			break;
+		case 2:
+			A->Viewseller();
+			break;
+		case 3:
+			A->viewMenu();
+			break;
+		case 4:
+			A->ViewTodayOrder("admin");
+			break;
+		case 5:
+			A->addPerson(p);
+			break;
+		case 0:
+			return;
+			break;
+		default:
+			break;
+		}
 	}
 }

@@ -43,6 +43,7 @@ string TodayFilePath() {
 	filepath = "./" + OrderDate().substr(0, 10);
 	return filepath;
 }
+
 void PrintOrder(string filename) {
 	ifstream ifs;
 	ifs.open(filename, ios::beg);
@@ -132,6 +133,7 @@ void Order::addOrder()
 	viewMenu();
 	string tempdishID, tempdishname;
 	double tempdishprice, totalprice = 0, tempquantity;
+	ofs << "订单编号：" << OrderID() << endl;
 	ofs << "菜品ID" << "\t" << "菜品名称" << "\t" << "菜品单价" << "\t" << "菜品份数" << endl;
 	while (true)
 	{
@@ -172,8 +174,8 @@ void Order::addOrder()
 	} while (tempaddress == "");
 	cout << "请选择您的地址编号:";
 	cin >> choose;
-	ofs << "订单编号" << "\t" << "总价" << "\t" << "顾客名称" << "\t" << "地址" << "\t" << "电话" << endl;
-	ofs << OrderID() << "\t" << totalprice << "\t" << name << "\t" << m_Vaddress[choose - 1].Address << "\t" << m_Vaddress[choose - 1].mPhoneNo << endl;
+	ofs << "总价" << "\t" << "顾客名称" << "\t" << "地址" << "\t" << "电话" << endl;
+	ofs << totalprice << "\t" << name << "\t" << m_Vaddress[choose - 1].Address << "\t" << m_Vaddress[choose - 1].mPhoneNo << endl;
 	ofs << OrderDate() << endl;
 	ofs.close();
 	system("cls");
@@ -229,4 +231,30 @@ void Order::ViewTodayOrder(string level)
 	}
 	system("pause");
 }
-
+void Order::Cancel(string orderid) {
+	InitOrder();
+	for (vector<Order>::iterator i = Vorder.begin(); i !=Vorder.end(); i++)
+	{
+		if (i->orderID == orderid)
+		{
+			remove(i->orderfiles.c_str());
+		}
+	}
+}
+void Order::InitOrder() {
+	vector<string> file;
+	Vorder.clear();
+	getFiles(TodayFilePath(), file);
+	ifstream ifs;
+	string templine;
+	for (int i = 0; i < file.size(); i++)
+	{
+		ifs.open(file[i], ios::beg);
+		getline(ifs, templine);
+		Vorder[i].orderfiles = file[i]; Vorder[i].orderID = templine.substr(10, 14);
+		if (Vorder[i].orderID == "")
+		{
+			remove(Vorder[i].orderfiles.c_str());
+		}
+	}
+}

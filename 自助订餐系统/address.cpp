@@ -54,6 +54,7 @@ void address::Addaddress()
 void address::intiaddress()
 {
 	ifstream ifs;
+	m_Vaddress.clear();
 	ifs.open("address.txt", ios::in);
 	if (!ifs.is_open())
 	{

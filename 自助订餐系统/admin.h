@@ -32,9 +32,9 @@ public:
 	virtual void operMenu();
 	//add Person
 	void addPerson(Person*p);
-	//view all Person
-	void viewAllMenu(int choose);
 	//view computer room info
+	void Viewbuyer();
+	void Viewseller();
 	void viewComRomInfo();
 	// clean reservation record
 	void cleanResRecord();

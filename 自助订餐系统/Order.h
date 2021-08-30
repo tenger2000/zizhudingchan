@@ -22,12 +22,15 @@ class Order :public Menu,public address
 public:
 	double totalprice;
 	int quantity;
+	string orderID,orderfiles;
 	Order();
 	Order(string dishname, int quantity,double price,string name,string address,string mphone);
 	void addOrder();
 	void createdir();
 	string createdoc(string name);
 	void ViewTodayOrder(string level);
-	map<int,string> mapordername;
+	void Cancel(string orderid);
+	void InitOrder();
+	vector<Order> Vorder;
 };
 
