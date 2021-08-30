@@ -154,6 +154,8 @@ void login(string fileName, int type) {
 }
 void buyermenu(Person* p) {
 	system("cls");
+	while (true)
+	{
 	p->operMenu();
 	buyer* B = (buyer*)p;
 	int choose;
@@ -173,12 +175,13 @@ void buyermenu(Person* p) {
 		B->addressManagemen();
 		break;
 	case 0:
-		
+		return;
 		break;
 	default:
 		break;
 	}
 	system("cls");
+	}
 }
 void employeemenu(Person* p) {
 	p->operMenu();

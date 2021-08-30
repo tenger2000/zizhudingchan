@@ -168,25 +168,6 @@ void admin::initialVector()
 			m_Vseller.push_back(S);
 		}
 	}
-
-	ifs.close();
-	ifs.open("order.txt", ios::in);
-	if (!ifs.is_open())
-	{
-		cout << "文件打开失败" << endl;
-		ifs.close();
-		ofstream fout("order.txt");
-		return;
-	}
-	else
-	{
-		Order o;
-		while (ifs >> o.dishID && ifs >> o.dishName && ifs >> o.price && ifs >> o.quantity)
-		{
-			//if(o.dishID.find())
-			m_Vorder.push_back(o);
-		}
-	}
 	ifs.close();
 }
 

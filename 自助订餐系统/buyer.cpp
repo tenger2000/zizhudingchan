@@ -39,7 +39,7 @@ void buyer::subOrder()
 }
 void buyer::viewOrder()
 {
-	this->ViewTodayOrder();
+	this->ViewTodayOrder("buyer");
 	system("cls");
 }
 void buyer::CancelOrder()

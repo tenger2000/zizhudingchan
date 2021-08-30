@@ -27,7 +27,7 @@ public:
 	void addOrder();
 	void createdir();
 	string createdoc(string name);
-	void ViewTodayOrder();
+	void ViewTodayOrder(string level);
 	map<int,string> mapordername;
 };
 

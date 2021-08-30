@@ -29,9 +29,18 @@ string OrderDate()
 	buf = string(tmpbuf);
 	return buf;
 }
+string OrderID() {
+	string ID = "";
+	for (int i = 0; i < OrderDate().size(); i++)
+	{
+		if (isdigit(OrderDate()[i]))
+			ID += OrderDate()[i];
+	}
+	return ID;
+}
 string TodayFilePath() {
 	string filepath;
-	filepath ="./" +OrderDate().substr(0, 10);
+	filepath = "./" + OrderDate().substr(0, 10);
 	return filepath;
 }
 void PrintOrder(string filename) {
@@ -163,8 +172,8 @@ void Order::addOrder()
 	} while (tempaddress == "");
 	cout << "请选择您的地址编号:";
 	cin >> choose;
-	ofs << "总价" << "\t" << "顾客名称" << "\t" << "地址" << "\t" << "电话" << endl;
-	ofs << totalprice << "\t" << name << "\t" << m_Vaddress[choose - 1].Address << "\t" << m_Vaddress[choose - 1].mPhoneNo << endl;
+	ofs << "订单编号" << "\t" << "总价" << "\t" << "顾客名称" << "\t" << "地址" << "\t" << "电话" << endl;
+	ofs << OrderID() << "\t" << totalprice << "\t" << name << "\t" << m_Vaddress[choose - 1].Address << "\t" << m_Vaddress[choose - 1].mPhoneNo << endl;
 	ofs << OrderDate() << endl;
 	ofs.close();
 	system("cls");
@@ -182,13 +191,13 @@ void Order::addOrder()
 
 string Order::createdoc(string name)
 {
-	string filedoc, file, TodayOrderNO;
+	string filedoc,TodayOrderNO;
 	vector<string> files;
 	getJustCurrentFile(TodayFilePath(), files);
 	char str[16];
 	_itoa_s(files.size() + 1, str, 16, 10);
 	TodayOrderNO = str;
-	filedoc = "./" + file + "/" + name + TodayOrderNO + ".txt";
+	filedoc = TodayFilePath() + "/" + name + TodayOrderNO + ".txt";
 	ofstream ofs;
 	ofs.open(filedoc, ios::app);
 	if (!ofs.is_open()) {
@@ -201,7 +210,7 @@ string Order::createdoc(string name)
 }
 
 
-void Order::ViewTodayOrder()
+void Order::ViewTodayOrder(string level)
 {
 	vector<string> files;
 	string filename;
@@ -209,7 +218,11 @@ void Order::ViewTodayOrder()
 	getFiles(TodayFilePath(), files);
 	for (int i = 0; i < files.size(); i++)
 	{
-		if (files[i].find(this->m_Uname)!=-1)
+		if ((level == "seller") || (level == "admin"))
+		{
+			PrintOrder(files[i]);
+		}
+		if (files[i].find(this->m_Uname) != -1 && level == "buyer")
 		{
 			PrintOrder(files[i]);
 		}
