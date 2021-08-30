@@ -15,6 +15,7 @@ Order::Order(string dishname, int quantity, double price, string name, string ad
 	this->mPhoneNo = mphone;
 	this->totalprice = quantity * price;
 }
+
 void Order::createdir() {
 	string dir;
 	dir = OrderDate().substr(0, 10);
@@ -23,6 +24,7 @@ void Order::createdir() {
 		::CreateDirectory(dir.c_str(), 0);
 	}
 }
+
 void getFiles(string path, vector<string>& files)
 {
 	//文件句柄
@@ -81,7 +83,7 @@ void Order::addOrder()
 	orderNO = OrderDate();
 	cout << orderNO << endl;
 	ordername = createdoc(name);
-	fstream ofs;
+	ofstream ofs;
 	ofs.open(ordername, ios::app);
 	if (!ofs.is_open())
 	{
@@ -111,14 +113,6 @@ void Order::addOrder()
 			}
 		}
 	}
-	ifstream ifs;
-	ifs.open("address.txt", ios::beg);
-	if (!ifs.is_open())
-	{
-		cout << "文件打开失败" << endl;
-		ifs.close();
-		return;
-	}
 	string tempaddress, tempphone;
 	int n = 0, choose;
 	do {
@@ -143,14 +137,18 @@ void Order::addOrder()
 	ofs << "总价" << "\t" << "顾客名称" << "\t" << "地址" << "\t" << "电话" << endl;
 	ofs << totalprice << "\t" << name << "\t" << m_Vaddress[choose - 1].Address << "\t" << m_Vaddress[choose - 1].mPhoneNo << endl;
 	ofs << OrderDate() << endl;
+	ofs.close();
+	system("cls");
 	cout << "您的订单如下：" << endl;
-	ofs.beg;
+	ifstream ifs;
+	ifs.open(ordername, ios::beg);
 	string templine, confirm;
-	while (getline(ofs, templine))
+	while (!ifs.eof())
 	{
+		getline(ifs, templine);
 		cout << templine << endl;
 	}
-	ofs.close();
+	ifs.close();
 	cout << "请输入 Y/N：";
 	cin >> confirm;
 	if (confirm != "Y" && confirm != "y")
