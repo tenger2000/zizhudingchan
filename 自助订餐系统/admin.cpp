@@ -2,14 +2,14 @@
 
 admin::admin()
 {
-	initialVector();
+	initseller();
 }
 
 admin::admin(string Uname, string pwd)
 {
 	this->m_Uname = Uname;
 	this->m_Pwd = pwd;
-	this->initialVector();
+
 }
 void admin::operMenu()
 {
@@ -25,12 +25,6 @@ void admin::operMenu()
 	cout << "|" << setfill('*') << setw(61) << "|" << endl;
 	cout << setfill('-') << setw(62) << "-" << endl;
 	cout << "请选择您的编号：";
-}
-void printbuyer(buyer& buyer) {
-	cout << "用户ID：" << buyer.m_SID << "\t用户名:" << buyer.m_Uname << "\t密码:" << buyer.m_Pwd << endl;
-}
-void printseller(seller& seller) {
-	cout << "用户ID：" << seller.m_SID << "\t用户名:" << seller.m_Uname << "\t密码:" << seller.m_Pwd << endl;
 }
 void admin::addPerson(Person* p)
 {
@@ -93,58 +87,8 @@ void admin::addPerson(Person* p)
 	}
 	return;
 }
-void admin::Viewbuyer()
-{
-	cout << "所有买家列表：" << endl;
-	for_each(this->m_Vbuyer.begin(), this->m_Vbuyer.end(), printbuyer);
-}
-void admin::Viewseller()
-{
-	cout << "所有员工列表：" << endl;
-	for_each(this->m_Vseller.begin(), this->m_Vseller.end(), printseller);
-}
-void admin::initialVector()
-{
-	this->m_Vbuyer.clear();
-	this->m_Vseller.clear();
-	this->m_Vmenu.clear();
-	this->m_Vorder.clear();
-	ifstream ifs;
-	ifs.open("buyer.txt", ios::in);
-	if (!ifs.is_open())
-	{
-		cout << "文件打开失败" << endl;
-		ifs.close();
-		ofstream fout("buyer.txt");
-		return;
-	}
-	else
-	{
-		buyer B;
-		while (ifs >> B.m_SID && ifs >> B.m_Uname && ifs >> B.m_Pwd)
-		{
-			m_Vbuyer.push_back(B);
-		}
-	}
-	ifs.close();
-	ifs.open("employee.txt", ios::in);
-	if (!ifs.is_open())
-	{
-		cout << "文件打开失败" << endl;
-		ifs.close();
-		ofstream fout("employee.txt");
-		return;
-	}
-	else
-	{
-		seller S;
-		while (ifs >> S.m_SID && ifs >> S.m_Uname && ifs >> S.m_Pwd)
-		{
-			m_Vseller.push_back(S);
-		}
-	}
-	ifs.close();
-}
+
+
 bool admin::checkRepeat(int id, int type, string name)
 {
 	switch (type)

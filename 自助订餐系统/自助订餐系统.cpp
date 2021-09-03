@@ -205,10 +205,10 @@ void adminmenu(Person* p) {
 		switch (choose)
 		{
 		case 1:
-			A->Viewbuyer();
+			A->viewbuyer();
 			break;
 		case 2:
-			A->Viewseller();
+			A->viewseller();
 			break;
 		case 3:
 			A->viewMenu();

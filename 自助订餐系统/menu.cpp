@@ -10,7 +10,6 @@ Menu::Menu(string dishName, string dishID, double price)
 {
 	this->dishName = dishName;
 	this->price = price;
-	initMenu();
 }
 
 void printmenu(Menu& menu)

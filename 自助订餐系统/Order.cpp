@@ -3,6 +3,8 @@
 Order::Order()
 {
 	createdir();
+	initMenu();
+	initaddress();
 }
 Order::Order(string dishname, int quantity, double price, string name, string address, string mphone)
 {
@@ -153,7 +155,7 @@ void Order::addOrder()
 	string tempaddress, tempphone;
 	int n = 0, choose;
 	do {
-		intiaddress();
+		initaddress();
 		for (vector<address>::iterator it = m_Vaddress.begin(); it != m_Vaddress.end(); it++)
 		{
 			if (name == it->m_Uname)

@@ -7,7 +7,7 @@ address::address()
 
 void printaddress(address& address)
 {
-	cout << "姓名：" << address.m_Uname << "\t地址:" << address.Address << "\t电话:" << address.mPhoneNo << endl;
+	cout <<address.ID<< "\t姓名：" << address.m_Uname << "\t地址:" << address.Address << "\t电话 : " << address.mPhoneNo << endl;
 }
 
 void address::viewaddress()
@@ -39,35 +39,56 @@ void address::Addaddress()
 	if (Q == 'Y' || Q == 'y')
 	{
 		ofstream ofs;
+		int serialnumber;
+		serialnumber = m_Vaddress.size() + 1;
 		ofs.open("address.txt", ios::app);
-		ofs << this->m_Uname << "\t" << Address << "\t" << mPhoneNo << endl;
+		ofs << serialnumber +"、\t" << this->m_Uname << "\t" << Address << "\t" << mPhoneNo << endl;
 		ofs.close();
 	}
 	return;
-
-
-
-
-
 }
 
-void address::intiaddress()
+void address::initaddress()
 {
 	ifstream ifs;
+	ifs.open("address.txt", ios::beg);
 	m_Vaddress.clear();
-	ifs.open("address.txt", ios::in);
+	m_Alladdress.clear();
 	if (!ifs.is_open())
 	{
-		cout << "文件打开失败" << endl;
+		cout << "address.txt打开失败" << endl;
 		ifs.close();
 		ofstream fout("address.txt");
 		return;
 	}
 	address A;
-	while (ifs >> A.m_Uname && ifs >> A.Address && ifs >> A.mPhoneNo)
+	while (ifs >> A.ID && ifs >> A.m_Uname && ifs >> A.Address && ifs >> A.mPhoneNo)
 	{
 		if (this->m_Uname == A.m_Uname)
 			m_Vaddress.push_back(A);
+		m_Alladdress.push_back(A);
 	}
 	ifs.close();
+}
+
+void address::Chgaddress()
+{
+	viewaddress();
+	int choose;
+	ofstream ofs;
+	ofs.open("address.txt", ios::beg);
+	cout << "请输入需要修改的地址编号：";
+	cin >> choose;
+	for (vector<address>::iterator it = m_Alladdress.begin(); it != m_Alladdress.end(); it++)
+	{
+		if (it->ID==choose)
+		{
+			cout << "请输入您的收货地址：";
+			cin >> it->Address;
+			cout << "请输入您的联系电话：";
+			cin >> it->mPhoneNo;
+		}
+		ofs << it->ID << "\t" << it->m_Uname << "\t" << it->Address << "\t" << it->mPhoneNo << endl;
+	}
+	ofs.close();
 }

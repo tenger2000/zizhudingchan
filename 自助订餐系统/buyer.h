@@ -27,4 +27,7 @@ public:
 	void CancelOrder();
 	void addressManagemen();
 	void ChangPswd();
+	void viewbuyer();
+	void initbuyer();
+	vector<buyer> m_Vbuyer;
 };
