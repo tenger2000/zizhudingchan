@@ -29,12 +29,9 @@ void admin::operMenu()
 void printbuyer(buyer& buyer) {
 	cout << "用户ID：" << buyer.m_SID << "\t用户名:" << buyer.m_Uname << "\t密码:" << buyer.m_Pwd << endl;
 }
-
 void printseller(seller& seller) {
 	cout << "用户ID：" << seller.m_SID << "\t用户名:" << seller.m_Uname << "\t密码:" << seller.m_Pwd << endl;
 }
-
-
 void admin::addPerson(Person* p)
 {
 	while (true) {
@@ -96,27 +93,16 @@ void admin::addPerson(Person* p)
 	}
 	return;
 }
-
 void admin::Viewbuyer()
 {
 	cout << "所有买家列表：" << endl;
 	for_each(this->m_Vbuyer.begin(), this->m_Vbuyer.end(), printbuyer);
 }
-
 void admin::Viewseller()
 {
 	cout << "所有员工列表：" << endl;
 	for_each(this->m_Vseller.begin(), this->m_Vseller.end(), printseller);
 }
-
-void admin::viewComRomInfo()
-{
-}
-
-void admin::cleanResRecord()
-{
-}
-
 void admin::initialVector()
 {
 	this->m_Vbuyer.clear();
@@ -159,7 +145,6 @@ void admin::initialVector()
 	}
 	ifs.close();
 }
-
 bool admin::checkRepeat(int id, int type, string name)
 {
 	switch (type)

@@ -4,7 +4,6 @@ Order::Order()
 {
 	createdir();
 }
-
 Order::Order(string dishname, int quantity, double price, string name, string address, string mphone)
 {
 	this->dishName = dishname;
@@ -14,6 +13,7 @@ Order::Order(string dishname, int quantity, double price, string name, string ad
 	this->Address = address;
 	this->mPhoneNo = mphone;
 	this->totalprice = quantity * price;
+	InitOrder();
 }
 string OrderDate()
 {
@@ -43,7 +43,6 @@ string TodayFilePath() {
 	filepath = "./" + OrderDate().substr(0, 10);
 	return filepath;
 }
-
 void PrintOrder(string filename) {
 	ifstream ifs;
 	ifs.open(filename, ios::beg);
@@ -63,7 +62,6 @@ void Order::createdir() {
 		::CreateDirectory(dir.c_str(), 0);
 	}
 }
-
 void getFiles(string path, vector<string>& files)
 {
 	//ÎÄ¼þ¾ä±ú
@@ -114,7 +112,6 @@ void getJustCurrentFile(string path, vector<string>& files)
 		_findclose(hFile);
 	}
 }
-
 void Order::addOrder()
 {
 	string name = this->m_Uname;
@@ -189,8 +186,6 @@ void Order::addOrder()
 		remove(ordername.c_str());
 	}
 }
-
-
 string Order::createdoc(string name)
 {
 	string filedoc,TodayOrderNO;
@@ -210,8 +205,6 @@ string Order::createdoc(string name)
 	ofs.close();
 	return filedoc;
 }
-
-
 void Order::ViewTodayOrder(string level)
 {
 	vector<string> files;
@@ -238,8 +231,10 @@ void Order::Cancel(string orderid) {
 		if (i->orderID == orderid)
 		{
 			remove(i->orderfiles.c_str());
+			return;
 		}
 	}
+	cout << "±àºÅÊäÈë´íÎó£¡" << endl;
 }
 void Order::InitOrder() {
 	vector<string> file;

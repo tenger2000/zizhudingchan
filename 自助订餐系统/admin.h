@@ -35,10 +35,6 @@ public:
 	//view computer room info
 	void Viewbuyer();
 	void Viewseller();
-	void viewComRomInfo();
-	// clean reservation record
-	void cleanResRecord();
-	// initialize stu and teacher vector 
 	void initialVector();
 	// check repeat account
 	bool checkRepeat(int id, int type,string name);
