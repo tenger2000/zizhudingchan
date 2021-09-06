@@ -141,7 +141,7 @@ void Order::addOrder()
 			break;
 		cout << "请输入您需要的菜品份数：";
 		cin >> tempquantity;
-		for (vector<Menu>::iterator i = Vmenu.begin(); i != Vmenu.end(); i++)
+		for (vector<Menu>::iterator i = m_Vmenu.begin(); i != m_Vmenu.end(); i++)
 		{
 			if (tempdishID == i->dishID)
 			{
@@ -189,7 +189,7 @@ void Order::addOrder()
 }
 string Order::createdoc(string name)
 {
-	string filedoc,TodayOrderNO;
+	string filedoc, TodayOrderNO;
 	vector<string> files;
 	getJustCurrentFile(TodayFilePath(), files);
 	char str[16];
@@ -227,7 +227,7 @@ void Order::ViewTodayOrder(string level)
 }
 void Order::Cancel(string orderid) {
 	InitOrder();
-	for (vector<Order>::iterator i = Vorder.begin(); i !=Vorder.end(); i++)
+	for (vector<Order>::iterator i = m_Vorder.begin(); i != m_Vorder.end(); i++)
 	{
 		if (i->orderID == orderid)
 		{
@@ -239,18 +239,20 @@ void Order::Cancel(string orderid) {
 }
 void Order::InitOrder() {
 	vector<string> file;
-	Vorder.clear();
+	m_Vorder.clear();
+	initMenu();
 	getFiles(TodayFilePath(), file);
 	ifstream ifs;
 	string templine;
 	for (int i = 0; i < file.size(); i++)
 	{
-		ifs.open(file[i], ios::beg);
+		ifs.open(file[i], ios::in || ios::beg);
 		getline(ifs, templine);
-		Vorder[i].orderfiles = file[i]; Vorder[i].orderID = templine.substr(10, 14);
-		if (Vorder[i].orderID == "")
+		m_Vorder[i].orderfiles = file[i]; m_Vorder[i].orderID = templine.substr(10, 14); m_Vorder[i].m_Vmenu = m_Vmenu;
+		ifs.close();
+		if (m_Vorder[i].orderID == "")
 		{
-			remove(Vorder[i].orderfiles.c_str());
+			remove(m_Vorder[i].orderfiles.c_str());
 		}
 	}
 }

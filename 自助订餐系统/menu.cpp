@@ -18,7 +18,7 @@ void printmenu(Menu& menu)
 }
 
 bool Menu::checkRepeat(string id, string dishname) {
-	for (vector<Menu>::iterator  i =Vmenu.begin(); i != Vmenu.end(); i++)
+	for (vector<Menu>::iterator  i =m_Vmenu.begin(); i != m_Vmenu.end(); i++)
 	{
 		if (id==i->dishID||dishname==i->dishName)
 		{
@@ -33,7 +33,7 @@ void Menu::viewMenu()
 {
 	initMenu();
 	cout << "所有菜品列表：" << endl;
-	for_each(Vmenu.begin(), Vmenu.end(), printmenu);
+	for_each(m_Vmenu.begin(), m_Vmenu.end(), printmenu);
 }
 
 void Menu::addMenu()
@@ -62,7 +62,7 @@ void Menu::addMenu()
 void Menu::initMenu()
 {
 	ifstream ifs;
-	Vmenu.clear();
+	m_Vmenu.clear();
 	ifs.open("menu.txt", ios::in);
 	if (!ifs.is_open())
 	{
@@ -74,7 +74,7 @@ void Menu::initMenu()
 	Menu m;
 	while (ifs >> m.dishID && ifs >> m.dishName && ifs >> m.price)
 	{
-		Vmenu.push_back(m);
+		m_Vmenu.push_back(m);
 	}
 	ifs.close();
 }

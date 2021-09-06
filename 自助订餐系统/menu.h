@@ -20,7 +20,7 @@ public:
 	void addMenu();
 	void initMenu();
 	bool checkRepeat(string id, string dishname);
-	vector<Menu> Vmenu;
+	vector<Menu> m_Vmenu;
 };
 
 

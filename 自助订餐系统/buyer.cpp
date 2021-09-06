@@ -105,6 +105,7 @@ void buyer::viewbuyer()
 void buyer::initbuyer()
 {
 	m_Vbuyer.clear();
+	InitOrder();
 	ifstream ifs;
 	ifs.open("buyer.txt", ios::beg);
 	if (!ifs.is_open())
@@ -117,6 +118,7 @@ void buyer::initbuyer()
 	else
 	{
 		buyer B;
+		B.m_Vorder = m_Vorder;
 		while (ifs >> B.m_SID && ifs >> B.m_Uname && ifs >> B.m_Pwd)
 		{
 			m_Vbuyer.push_back(B);

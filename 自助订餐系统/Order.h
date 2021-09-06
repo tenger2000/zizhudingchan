@@ -31,6 +31,6 @@ public:
 	void ViewTodayOrder(string level);
 	void Cancel(string orderid);
 	void InitOrder();
-	vector<Order> Vorder;
+	vector<Order> m_Vorder;
 };
 
