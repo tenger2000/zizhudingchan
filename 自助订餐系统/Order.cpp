@@ -3,8 +3,6 @@
 Order::Order()
 {
 	createdir();
-	initMenu();
-	initaddress();
 }
 Order::Order(string dishname, int quantity, double price, string name, string address, string mphone)
 {
@@ -15,7 +13,8 @@ Order::Order(string dishname, int quantity, double price, string name, string ad
 	this->Address = address;
 	this->mPhoneNo = mphone;
 	this->totalprice = quantity * price;
-	InitOrder();
+	initMenu();
+	initaddress();
 }
 string OrderDate()
 {

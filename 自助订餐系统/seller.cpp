@@ -2,11 +2,15 @@
 
 seller::seller()
 {
-	initbuyer();
+	
 }
 
 seller::seller(int id, string Uname, string Upswd)
 {
+	this->m_SID = id;
+	this->m_Uname = Uname;
+	this->m_Pwd = Upswd;
+	initbuyer();
 }
 void printseller(seller& seller) {
 	cout << "用户ID：" << seller.m_SID << "\t用户名:" << seller.m_Uname << "\t密码:" << seller.m_Pwd << endl;
@@ -17,10 +21,8 @@ void seller::operMenu()
 
 void seller::viewseller()
 {
-
-		cout << "所有员工列表：" << endl;
-		for_each(this->m_Vseller.begin(), this->m_Vseller.end(), printseller);
-
+	cout << "所有员工列表：" << endl;
+	for_each(this->m_Vseller.begin(), this->m_Vseller.end(), printseller);
 }
 
 void seller::initseller()

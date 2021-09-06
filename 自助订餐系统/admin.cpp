@@ -2,14 +2,13 @@
 
 admin::admin()
 {
-	initseller();
 }
 
 admin::admin(string Uname, string pwd)
 {
 	this->m_Uname = Uname;
 	this->m_Pwd = pwd;
-
+	initseller();
 }
 void admin::operMenu()
 {
